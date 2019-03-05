@@ -14,7 +14,7 @@ gem 'coffee-rails', '~> 4.2'
 gem 'jquery-rails'
 
 gem 'devise', :github => 'plataformatec/devise', :branch => 'master'
-gem 'bootstrap-sass', '~> 3.3.6'
+gem 'bootstrap-sass', ">= 3.4.1"
 gem 'font-awesome-sass', '~> 4.4.0'
 gem 'kaminari'
 gem 'carrierwave'
