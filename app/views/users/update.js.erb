@@ -1,0 +1,8 @@
+$(".add-user-form-content #error-container").html("");
+<% if @user.errors.full_messages.blank? %>
+  hideModel();
+  getUsersList('<%= @user_type %>');
+  showFlashMessage('<%= t('toastr.type.success') %>', '<%= t('toastr.message.successfully_updated', type: 'User') %>');
+<% else %>
+  $(".add-user-form-content #error-container").html("<%= j render "shared/errors", errors: @user.errors.full_messages %>");
+<% end %>

@@ -1,0 +1,48 @@
+%table.global-table.table-responsive.sort-fields
+  %thead
+    %tr
+      %th.col-md-4.sort-header
+        = render 'shared/sortable_header', name: t('table.headers.first_name'), key: 'first_name'
+      %th.col-md-4.sort-header
+        = render 'shared/sortable_header', name: t('table.headers.last_name'), key: 'last_name'
+      %th.col-md-6.sort-header
+        = render 'shared/sortable_header', name: t('table.headers.email'), key: 'email'
+      %th
+
+  %tbody
+    - if users.present?
+      - users.each do |user|
+        %tr
+          %td
+            = user.first_name
+          %td
+            = user.last_name
+          %td
+            = user.email
+          %td.btn-curd-section
+            - if @user_type != 'deleted'
+              %a.fa.fa-pencil-square-o{ href: edit_user_path(id: user.id, user_type: @user_type), data: { remote: true } }
+              %a.fa.fa-trash.btn-delete{ data: { href: user_path(id: user.id, user_type: @user_type) } }
+            - else
+              %a{ href: user_undelete_path(user_id: user.id, user_type: @user_type), data: { remote: true, method: 'POST' } }
+                %span.fa-stack
+                  %i.fa.fa-reply.fa-stack-1x
+                  %i.fa.fa-user.fa-stack
+    - else
+      %tr
+        %td.nil-data-row{ colspan: '100%' }
+          = t('table.body.nil_users')
+
+.pagination-content.show-pagination-loader
+  = paginate users, :remote => true
+
+
+:javascript
+  $(function(){
+    $(".users-list-content .users-tab-section .btn-delete").click(function(){
+      var url = $(this).data('href');
+      $("#confirm_modal .modal-body #content").html("<h4>Are you sure ?  </h4>");
+      $("#confirm_modal .modal-footer .btn2").attr({"href": url, "data-remote": true, "data-method": "delete"});
+      showConfirmModel("Confirm to Delete");
+    });
+  });

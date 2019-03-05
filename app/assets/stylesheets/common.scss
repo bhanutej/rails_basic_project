@@ -1,0 +1,167 @@
+table.global-table {
+  width: 100%;
+  .sort-header{
+    cursor: pointer;
+  }
+  thead > tr {
+    background-color:  $table-header-color;
+    color:$font-color;
+  }
+  a {
+    &.btn{
+      text-decoration: none;
+    }
+    &.txtd-none{
+      text-decoration: none !important;
+    }
+    &:hover{
+      color: $bootstrap-color;
+    }
+  }
+  thead tr th,tbody tr td{
+    vertical-align: middle;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid $text-field !important;
+  }
+  thead th.column-fix, td.column-fix{
+    width: 100px !important;
+    text-align: center;
+  }
+  tbody{
+    background: $white;
+    td.nil-data-row{
+      text-align: center;
+      font-size: 14px;
+      font-weight: bold;
+      color: $table-header-color;
+      text-align: center
+    }
+  }
+}
+
+.pagination_container{
+  position: relative;
+  //pagination loader
+  .pagination-loader{
+    position: absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    display:none;
+    z-index:999999;
+    background-color: rgba(0, 0, 0, 0.2);
+
+    .fa.fa-pulse{
+      position:absolute;
+      top:47%;
+      left:47%;
+      font-size:40px;
+      color:#999999;
+      z-index: 10000000000;
+    }
+
+  }
+}
+
+.pagination-content{
+  text-align: center;
+}
+
+.pagination {
+  .page {
+    a {
+      border: transparent;
+      display: inline-block;
+      //border-radius: 3px;
+      padding: 7px 14px;
+      //margin: 0 3px;
+      // background-color: $font-color;
+      color: $black;
+    }
+    a:hover{
+      text-decoration: none;
+      background-color: $pagination-bg-color;
+      border-radius: 3px;
+    }
+  }
+  .page.current{
+    border: 1px solid $pagination-bg-color;
+    display: inline-block;
+    border-radius: 3px;
+    padding: 7px 14px;
+    //margin: 0 3px;
+    background-color: $pagination-bg-color;
+    color: $font-color;
+  }
+  .first, .prev, .last, .next {
+    a {
+      border: transparent;
+      display: inline-block;
+      //border-radius: 3px;
+      padding: 7px 14px;
+      //margin: 0 3px;
+      // background-color: $font-color;
+      color: $black;
+    }
+    a:hover {
+      text-decoration: none;
+      background-color: $pagination-bg-color;
+      border-radius: 3px;
+    }
+  }
+}
+
+.filters-container{
+  .panel-title{
+    font-size: 11px;
+    font-weight: bold;
+  }
+  .fa-rotate{
+    font-size: 16px;
+    color: #333;
+  }
+  .filter-title, .dropdown-content{
+    display: inline-block;
+    cursor: pointer;
+  }
+  .filter-body-content{
+    .filter-order-list{
+      padding-left: 0px;
+    }
+    .filter-name{
+      list-style: none;
+      margin-bottom: 15px;
+    }
+    input[type=radio]{
+      float: left;
+      margin: 3px 3px 0 3px;
+    }
+    .radio-label{
+      display: block;
+      padding-top: 2px;
+      font-weight: bold;
+    }
+  }
+}
+
+.btn-container {
+  margin-bottom: 15px;
+  .btn-content {
+    display: flex;
+    justify-content: flex-end;
+  }
+}
+
+.btn-curd-section{
+  text-align:right;
+  padding-right:20px;
+  > a {
+    cursor: pointer;
+  }
+}
+
+#error-container {
+  margin: 0 0 15px 15px;
+}

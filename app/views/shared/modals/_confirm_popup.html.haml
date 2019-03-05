@@ -1,0 +1,15 @@
+#confirm_modal.modal.fade{ "data-backdrop": "static" }
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{ :type => "button", 'data-dismiss' => "modal", 'aria-label' => "Close" }
+          %span{ 'aria-hidden' => "true" }
+            &times;
+        %h4.modal-title
+      .modal-body
+        #content
+      .modal-footer
+        %a.btn.btn-default.btn1{ "data-dismiss": "modal" }
+          = t('buttons.no')
+        %a.btn.btn-primary.btn2
+          = t('buttons.yes')

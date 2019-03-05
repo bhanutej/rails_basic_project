@@ -1,0 +1,3 @@
+$('#generic_modal .modal-body #content').html('<%= j render 'users/form', user: @user, user_type: @user_type %>');
+$(".add-user-form-content #error-container").html("");
+showModel("<%= t('modal.header_name', name: 'User Update') %>", true);

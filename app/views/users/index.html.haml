@@ -1,0 +1,43 @@
+- filters = [{ :type => 'radio', :name => 'user_type', :title => 'Status', :options => { :active => 'Active', :inactive => 'In Active', :deleted => 'Deleted' } }, 
+{ :type => 'text', :title => 'Filters', :filters => { :first_name => 'First Name', :last_name => 'Last Name', :email => 'Email' } }]
+- form_action = users_path
+.users-list-content
+  .container-fluid.users-container
+    .row.btn-container
+      .col-md-12.btn-content
+        %button.btn.btn-default#btn-add-user
+          = 'Add User'
+    .row
+      .col-md-2.page-data-filters
+        = render 'shared/filters', filters: filters, form_action: form_action
+      .users-list
+        .col-md-10
+          .users-tab-section
+            .page-data-params
+              = hidden_field_tag('sort_by')
+              = hidden_field_tag('sort_order')
+            .pagination_container
+              .pagination-loader
+                %i.fa.fa-spinner.fa-pulse
+              .pagination-data
+                = render 'users/users', users: @users
+      .modal-partials
+        = render "shared/modals/confirm_popup"
+        = render "shared/modals/generic"
+
+:javascript
+
+  $(function(){
+    $('.users-list-content #btn-add-user').click(function(){
+      $.get("/users/new","", function(){},'script');
+    });
+
+    $('.users-list-content .pagination-data ').on('click', '.sort-header', function(){
+      var sortKey = $(this).find('.fa').data('sort-key');
+      var sortOrder = $(this).find('.fa').data('sort-order');
+      $('.page-data-params #sort_by').val(sortKey);
+      $('.page-data-params #sort_order').val(sortOrder);
+      var users = gatherFilters(true);
+      $.get("/users", users, function(){},'script');
+    });
+  });

@@ -1,0 +1,7 @@
+getUsersList("<%= @user_type %>");
+hideConfirmModel();
+<% if @user_deleted %>
+  showFlashMessage('<%= t('toastr.type.success') %>', '<%= t('toastr.message.successfully_deleted', type: 'User') %>');
+<% else %>
+  showFlashMessage('<%= t('toastr.type.warning') %>', '<%= t('toastr.message.unsuccessful_deletion') %>');
+<% end %>

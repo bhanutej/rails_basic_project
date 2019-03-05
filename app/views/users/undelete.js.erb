@@ -1,0 +1,6 @@
+<% if @user.errors.full_messages.blank? %>
+  getUsersList('<%= @user_type %>');
+  showFlashMessage('<%= t('toastr.type.success') %>', '<%= t('toastr.message.successfull_user_undeltetion', type: 'User') %>');
+<% else %>
+  showFlashMessage('<%= t('toastr.type.warning') %>', '<%= t('toastr.message.unsuccessfull_user_undeletion', type: 'User') %>');
+<% end %>

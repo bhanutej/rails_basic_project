@@ -1,0 +1,34 @@
+.add-user-form-content
+  = form_for(user, :remote => true )  do |f|
+    .row
+      .col-md-12
+        = f.hidden_field :id
+        = hidden_field_tag('user_type', user_type.present? ? user_type : 'active')
+        
+        #error-container
+        .form-group
+          %label
+            = t('form.first_name')
+          = f.text_field :first_name, :class => 'form-control'
+        .form-group
+          %label
+            = t('form.last_name')
+          = f.text_field :last_name, :class => 'form-control'
+        .form-group
+          %label
+            = t('form.email')
+          = f.text_field :email, :class => 'form-control'
+        .form-group
+          %label
+            = t('form.password')
+          = f.password_field :password, :class => 'form-control'
+        .form-group
+          %label
+            = t('form.password_confirmation')
+          = f.password_field :password_confirmation, :class => 'form-control'
+        .row
+          %div.modal-footer
+            %a.btn.btn-default.btn-cancel{ :data => { 'dismiss' => 'modal' } }
+              = t('buttons.cancel')
+            %button.btn.btn-material#btn_post{ type: 'submit' }
+              = t('buttons.submit')

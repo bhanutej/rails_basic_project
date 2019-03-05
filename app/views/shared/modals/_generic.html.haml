@@ -1,0 +1,11 @@
+#generic_modal{ :class => "modal fade", :role => "for forms", "data-backdrop": "static" }
+  %div{ :class => "modal-dialog" }
+    %div{ :class => "modal-content" }
+      %div{ :class => "modal-header" }
+        %button{ :type => "button", :class => "close", 'data-dismiss' => "modal", 'aria-label' => "Close" }
+          %span{ 'aria-hidden' => "true" }
+            &times;
+        %h4{ :class => "modal-title" }
+      %div{ :class => "modal-body" }
+        %ul#error
+        #content

@@ -1,0 +1,35 @@
+.container-fluid
+  .row
+    .col-md-4
+    .col-md-4.devise-content
+      .panel.panel-warning.devise-panel
+        .panel-heading
+          %h4 Log in
+        .panel-body
+          = form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "form-horizontal" }) do |f|
+            .form-group
+              .field
+                %label.col-sm-2.control-label{:for => "inputEmail3"} Email
+                .col-sm-10
+                  = f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control', placeholder: 'xxx@gmail.com'
+            .form-group
+              .field
+                %label.col-sm-2.control-label{:for => "inputPassword"} Password
+                .col-sm-10
+                  = f.password_field :password, autocomplete: "current-password", class: 'form-control', placeholder: '......'
+            .form-group
+              .field
+                .col-sm-2
+                .col-sm-10
+                  - if devise_mapping.rememberable?
+                    .field
+                      = f.check_box :remember_me
+                      = f.label :remember_me
+            .form-group
+              .field
+                .col-sm-2
+                .col-sm-10
+                  .actions
+                    = f.submit "Log in", class: 'btn btn-default'
+                  = render "devise/shared/links"
+    .col-md-4

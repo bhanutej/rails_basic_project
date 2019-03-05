@@ -1,0 +1,44 @@
+.form-filters-container
+  = hidden_field_tag 'form_action', form_action
+  - filters.each do |filter|
+    .filters-container
+      .panel.panel-default
+        .panel-heading
+          .panel-title-content
+            .filter-title
+              .panel-title
+                = filter[:title].upcase
+            .dropdown-content.pull-right
+              %a.down-arrow
+                %i.fa.fa-angle-down.fa-2x.fa-rotate
+        .panel-body
+          .filter-body-content
+            - if filter[:type] == 'radio'
+              = render 'shared/radio_filters', name: filter[:name], options: filter[:options]
+            - elsif filter[:type] == 'text'
+              = render 'shared/text_filters', text_filters: filter[:filters]
+              %button.btn.btn-default.btn-filter
+                = 'Filter'
+
+:javascript
+
+  $('.selected-filter').click(function(){
+    applyFilter();
+  });
+
+  $('.form-filters-container').on('click', '.btn-filter', function(){
+    applyFilter();
+  });
+
+  function applyFilter(){
+    var filterValue = gatherFilters();
+    var form_action = $("#form_action").val();
+    //var type = $(this).val();
+    $.ajax({
+      type: "GET",
+      async: true,
+      url: form_action,
+      data: filterValue,
+      dataType: "script"
+    });
+  }

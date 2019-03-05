@@ -1,0 +1,7 @@
+- options.each do |key, value|
+  %ul.filter-order-list.radio-filter
+    %li.filter-name
+      %input{ type: 'radio', name: name, value: key, class: 'selected-filter' }
+      %span.radio-label
+        = value
+        
