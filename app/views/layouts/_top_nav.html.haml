@@ -23,7 +23,7 @@
             = current_user.present? ? current_user.name : 'Username'
             %span.caret
           %ul.dropdown-menu
-            -# %li
-            -#   %a{:href => "#"} Action
-            -# %li.divider{:role => "separator"}
+            %li
+              %a{:href => user_user_profile_path(user_id: current_user.id)} User Profile
+            %li.divider{:role => "separator"}
             %li= link_to('Logout', destroy_user_session_path, method: :delete)

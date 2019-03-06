@@ -7,6 +7,7 @@ class User < ApplicationRecord
 
   attr_writer :login
   attr_accessor :skip_password_validation
+  mount_uploader :avatar, AvatarUploader
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
@@ -41,7 +42,15 @@ class User < ApplicationRecord
   end
 
   def password_required?
-    !skip_password_validation
+    if skip_password_validation
+      false
+    elsif new_record? 
+      super
+    elsif !new_record?
+      false
+    else
+      true
+    end
   end
 
   def login

@@ -1,10 +1,17 @@
 .add-user-form-content
   = form_for(user, :remote => true )  do |f|
     .row
-      .col-md-12
+      .col-md-4
+        - avatar_img =  user.avatar.present? ? "#{ user.avatar.large.url }" : "/profile_avatar.png"
+        .avatar-container{style: "background: url('#{ avatar_img }') no-repeat; height: 159px; width: 156px; border-radius: 50%;background-size: 100% 100%; border:1px solid #ddd; overflow: hidden; margin: 0 auto;"}
+        = f.file_field :avatar, class: "hide"
+        .btn-add-avatar-container
+          %a#btn_upload.form-control.btn.btn-default.btn-add-avatar
+            = 'Profile Pic'
+      .col-md-8
         = f.hidden_field :id
         = hidden_field_tag('user_type', user_type.present? ? user_type : 'active')
-        
+
         #error-container
         .form-group
           %label
@@ -18,17 +25,31 @@
           %label
             = t('form.email')
           = f.text_field :email, :class => 'form-control'
-        .form-group
-          %label
-            = t('form.password')
-          = f.password_field :password, :class => 'form-control'
-        .form-group
-          %label
-            = t('form.password_confirmation')
-          = f.password_field :password_confirmation, :class => 'form-control'
+        - if action_name == 'new'
+          .form-group
+            %label
+              = t('form.password')
+            = f.password_field :password, :class => 'form-control'
+          .form-group
+            %label
+              = t('form.password_confirmation')
+            = f.password_field :password_confirmation, :class => 'form-control'
         .row
           %div.modal-footer
             %a.btn.btn-default.btn-cancel{ :data => { 'dismiss' => 'modal' } }
               = t('buttons.cancel')
             %button.btn.btn-material#btn_post{ type: 'submit' }
               = t('buttons.submit')
+
+:javascript
+  var type = "form";
+  $(".add-user-form-content .btn-add-avatar").on("click", function(){
+    $(".add-user-form-content #user_avatar").click();
+  });
+
+  $(".add-user-form-content #user_avatar").on("change",avatarPreviewImage);
+
+  function avatarPreviewImage(){
+    $(".avatar-container").css({"class" : "hide"});
+    previewImage(this, $(".avatar-container"), type);
+  }

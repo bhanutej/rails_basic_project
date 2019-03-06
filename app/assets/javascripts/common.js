@@ -153,3 +153,26 @@ function gatherFilters(inputDataParams){
   }
   return filterObjects;
 }
+
+function previewImage(input, targetObj, type) {
+  var height = (type == "profile") ? "280px" : "159px";
+  var width = (type == "profile") ? "280px" : "156px";
+  if (input.files && input.files[0]) {
+      var reader = new FileReader();
+      reader.onload = function (e) {
+          //console.log(e.target.result);
+          // $(targetObj).attr("src", e.target.result);
+          $(targetObj).css({
+              "background-image" : "url("+e.target.result+")",
+              "background-size" : "100% 100%",
+              "height" : "+"+height+"+",
+              "width" : "+"+width+"+",
+              "border-radius" : "50%",
+              "border" : "1px solid #ddd",
+              "overflow" : "hidden",
+              "margin" : "0 auto"
+          });
+      }
+      reader.readAsDataURL(input.files[0]);
+  }
+}

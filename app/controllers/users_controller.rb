@@ -28,6 +28,12 @@ class UsersController < ApplicationController
   def update
     @user = User.where(id: params[:user][:id]).first
     @user_type = params[:user_type]
+    @user.skip_password_validation =
+      if params[:user][:password].present?
+        true
+      else
+        false
+      end
     @user.user_update(user_params)
   end
 
@@ -43,10 +49,14 @@ class UsersController < ApplicationController
     @user.update_attributes(deleted_at: nil)
   end
 
+  def user_profile
+    @user = current_user
+  end
+
   private
 
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation)
+    params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :avatar)
   end
 
   def filtered_users(user_type, sort_by, sort_order)

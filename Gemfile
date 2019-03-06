@@ -18,6 +18,7 @@ gem 'bootstrap-sass', ">= 3.4.1"
 gem 'font-awesome-sass', '~> 4.4.0'
 gem 'kaminari'
 gem 'carrierwave'
+gem 'mini_magick'
 gem 'remotipart', '~> 1.2'
 gem 'pundit'
 gem 'haml-rails'

@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   root to: 'base#index'
   resources :users do
     post 'undelete'
+    get 'user_profile'
   end
 
   # REST APIs
