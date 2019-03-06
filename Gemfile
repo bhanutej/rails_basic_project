@@ -22,6 +22,10 @@ gem 'remotipart', '~> 1.2'
 gem 'pundit'
 gem 'haml-rails'
 gem 'kaminari'
+gem 'active_model_otp', '~> 1.2'
+gem 'rotp', '~> 4.0', '>= 4.0.2'
+gem 'active_model_serializers', "~> 0.8.0"
+gem 'jwt'
 
 group :development, :test do
   gem 'byebug', platform: :mri

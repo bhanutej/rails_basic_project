@@ -28,6 +28,33 @@ en:
       email: 'Email'
   modal:
     header_name: '%{name}'
+  model:
+    validation:
+      message:
+        scope_unique: "has already been taken for the %{scope_name}"
+        select: "please select %{option}"
+        can_not_be_numbers: "can't be only numbers"
+        can_be_only_numbers: 'can be only numbers'
+        can_not_blank: "can't be blank"
+        can_not_more: "can't be more than %{value}"
+        can_not_more_or_eqaul: "can't be more or equal to %{label}"
+        numbers_not_allowed: 'numbers not allowed'
+        valid_filed: "please provide valid %{field}"
+  api:
+    authentication:
+      authorization: 'Authorization'
+      errors:
+        otp_expired: 'otp expired'
+        invalid_otp: 'invalid otp'
+        invalid_credentials: 'invalid credentials'
+        not_authenticated: 'not authenticated'
+        not_found: 'not found'
+        unauthorized: 'Unauthorized access'
+    errors:
+      record_not_found: "%{record_name} not found"
+      dealer_not_associated_with_slot: 'dealer not associated with that time slot'
+      user_not_associated_with_address: 'user not associated with that address'
+      status_code_either: "status codes either 'join' or 'cancel' or 'leave'"
   form:
     first_name: 'First Name'
     last_name: 'Last Name'
@@ -47,3 +74,11 @@ en:
   buttons:
     cancel: 'Cancel'
     submit: 'Submit'
+  status:
+    continue: 100
+    ok: 200
+    bad_request: 400
+    unauthorized: 401
+    forbidden: 403
+    not_found: 404
+    unprocessable_entity: 422

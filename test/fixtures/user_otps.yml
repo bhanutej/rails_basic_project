@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  otp_value: MyString
+  is_validated: false
+  expiry_date: 2019-03-06 11:14:18
+
+two:
+  user: two
+  otp_value: MyString
+  is_validated: false
+  expiry_date: 2019-03-06 11:14:18

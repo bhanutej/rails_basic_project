@@ -5,4 +5,13 @@ Rails.application.routes.draw do
   resources :users do
     post 'undelete'
   end
+
+  # REST APIs
+  namespace :api, defaults: { format: :json } do
+    namespace :v1 do
+      post :request_otp, to: 'authentication#request_otp'
+      post :verify_otp, to: 'authentication#verify_otp'
+      post :resend_otp, to: 'authentication#resend_otp'
+    end
+  end
 end

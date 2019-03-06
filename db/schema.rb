@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190305054824) do
+ActiveRecord::Schema.define(version: 20190306054418) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "user_otps", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "otp_value"
+    t.boolean  "is_validated"
+    t.datetime "expiry_date"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["user_id"], name: "index_user_otps_on_user_id", using: :btree
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -29,9 +39,13 @@ ActiveRecord::Schema.define(version: 20190305054824) do
     t.datetime "updated_at",                          null: false
     t.integer  "status",                 default: 1
     t.datetime "deleted_at"
+    t.string   "mobile_number"
+    t.string   "otp_secret_key"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
+    t.index ["mobile_number"], name: "index_users_on_mobile_number", using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
     t.index ["status"], name: "index_users_on_status", using: :btree
   end
 
+  add_foreign_key "user_otps", "users"
 end
